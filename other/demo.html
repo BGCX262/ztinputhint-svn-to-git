@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>jQuery Plugin ztInputHint</title>
+
+<script src="http://www.google.com/jsapi"></script> 
+<script type="text/javascript">google.load("jquery", "1.3.2");</script> 
+<script src="../tags/V_1_2/jquery.ztinputhint.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="demo.css" />
+
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+
+	$(".code").each(function(){
+		// encode < and > to &lt; and &gt; etc.
+		$(this).text($(this).html());
+	});
+
+	// 1st example
+	$("#eg1 form#login input").ztInputHint();
+
+	// 2nd example
+	$("#eg5 form#login input").ztInputHint();
+
+	// 3rd example
+	$("#eg2 form#login input").ztInputHint({
+		sourceAttrib: 'alt'
+	});
+	
+	// 4th example
+	$("#eg3 form#login input#username").ztInputHint('Username');
+	$("#eg3 form#login input#password").ztInputHint('Password');
+
+	// 5th example
+	$("#eg4 form#search input").ztInputHint({
+		hintClass: 'label'
+	});
+	
+});
+//-->
+</script>
+
+</head>
+<body>
+
+<div align="center">
+	<h1>jQuery Plugin ztInputHint</h1>
+	<div id="body">
+		
+		<!-- ############################################ -->
+		<h3>Defaults:</h3>
+		
+		<div id="eg0" class="content">
+			<ol>
+				<li>The Plugin ignores all elements except text-input-fields like <i>type="text"</i> and <i>type="password"</i>. That is not changeable, not yet.</li>
+				<li>The Plugin ignores the element if there is an value set (not empty), but will reactivate hint if the value is removed.</li>
+				<li>The Plugin read the title attribute (per setting changeable).</li>
+				<li>The Plugin inherits attributes like CSS-Class (per setting changeable), size and tabIndex.</li>
+				<li>The Plugin will not set Name-Attributes to the hints, so there will not be submit.</li>
+				<li>Changeable options: { <b>hint:</b> <i>'myname'</i>, <b>sourceAttrib:</b> <i>'myattrib'</i>, <b>hintClass:</b> <i>'myclass'</i>}.</li>
+				
+			</ol>
+			
+		</div>
+	</div>
+	
+	<!-- ############################################ -->
+	<div id="body">
+		<h3>The simplest way</h3>
+		
+		<div id="eg1" class="content">
+			
+			Place this in the javascript area.
+			
+			<div class="code">
+$("form#login input").ztInputHint();
+			</div>
+			
+			No need to change your inputfields:
+			
+			<div class="code">
+<form id="login">
+    <input title="Username" type="text" name="username" value="" />
+    <input title="Password" type="password" name="password" value="" />
+    <input type="checkbox" />
+    <input type="submit" value="GO" />
+</form>
+			</div>
+			
+			Demo:
+			
+			<div class="box">
+				<form id="login" onsubmit="return false;">
+						<input title="Username" type="text" name="username" value="" class="text" />
+						<input title="Password" type="password" name="password" value="" class="text" />
+						<input type="checkbox" />
+						<input type="submit" value="GO" class="btn" />
+				</form>
+			</div>
+	
+		</div>
+	</div>
+	
+	<!-- ############################################ -->
+	<div id="body">
+		<h3>The simplest way</h3>
+		
+		<div id="eg5" class="content">
+			
+			If is a value given it works, too. Like on reload in case of wrong inputs or predefined values or what ever:
+			
+			<div class="code">
+$("form#login input").ztInputHint();
+			</div>
+			
+			No need to change your inputfields:
+			
+			<div class="code">
+<form id="login">
+    <span style="color: red;">Wrong Username or Password</span><br />
+    <input title="Username" type="text" name="username" value="Masterblaster" />
+    <input title="Password" type="password" name="password" value="" />
+    <input type="checkbox" />
+    <input type="submit" value="GO" />
+</form>
+			</div>
+			
+			Demo:
+			
+			<div class="box">
+				<form id="login" onsubmit="return false;">
+						<span style="color: red;">Wrong Username or Password</span><br />
+    				<input title="Username" type="text" name="username" value="Masterblaster" class="text" />
+						<input title="Password" type="password" name="password" value="" class="text" />
+						<input type="checkbox" />
+						<input type="submit" value="GO" class="btn" />
+				</form>
+			</div>
+	
+		</div>
+	</div>
+	
+	<!-- ############################################ -->
+	<div id="body">
+		<h3>Changing sourceAttrib</h3>
+		
+		<div id="eg2" class="content">
+		
+			Changing sourceAttrib, to automatically pick an other attribute:
+			
+			<div class="code">
+$("form#login input").ztInputHint({
+    sourceAttrib: 'alt'
+});
+			</div>
+			
+			<div class="code">
+<form id="login">
+    <input alt="Username" type="text" name="username" value="" />
+    <input alt="Password" type="password" name="password" value="" />
+    <input type="checkbox" />
+    <input type="submit" value="GO" />
+</form>
+			</div>
+			
+			Demo:
+			
+			<div class="box">
+				<form id="login" onsubmit="return false;">
+					<input alt="Username" type="text" name="username" value="" class="text" />
+					<input alt="Password" type="password" name="password" value="" class="text" />
+					<input type="checkbox" />
+					<input type="submit" value="GO" />
+				</form>
+			</div>
+			
+		</div>
+	</div>
+	
+	<!-- ############################################ -->
+	<div id="body">
+		<h3>Simple assigning hints directly</h3>
+		
+		<div id="eg3" class="content">
+		
+			Easy manually assign hints to inputfields:
+			
+			<div class="code">
+$("form#login input#username").ztInputHint('Username');
+$("form#login input#password").ztInputHint('Password');
+			</div>
+			
+			<div class="code">
+<form id="login">
+    <input id="username" type="text" name="username" value="" />
+    <input id="password" type="password" name="password" value="" />
+    <input type="checkbox" />
+    <input type="submit" value="GO" />
+</form>
+			</div>
+			
+			Demo:
+			
+			<div class="box">
+				<form id="login" onsubmit="return false;">
+					<input id="username" type="text" name="username" value="" class="text" />
+					<input id="password" type="password" name="password" value="" class="text" />
+					<input type="checkbox" />
+					<input type="submit" value="GO" />
+				</form>
+			</div>
+			
+		</div>
+	</div>
+	
+	<!-- ############################################ -->
+	<div id="body">
+		<h3>Use an other class for hints</h3>
+		
+		<div id="eg4" class="content">
+		
+			Bind an other CSS-Class to the hints:
+			
+			<div class="code">
+$("form#search input").ztInputHint({
+    hintClass: 'label'
+});
+			</div>
+			
+			<div class="code">
+<form id="search">
+    <input title="Search" type="text" name="search" value="" class="textsearch" />
+    <input type="submit" value="search" class="button" />
+</form>
+			</div>
+			
+			Demo:
+			
+			<div class="box">
+				<form id="search" onsubmit="return false;">
+					<input title="Search" type="text" name="search" value="" class="textsearch" />
+					<input type="submit" value="search" class="button" />
+				</form>
+			</div>
+			
+		</div>
+	</div>
+	
+	
+	<div class="foot">
+		 &copy; Copyright 2010 Zeljko Trulec | <a href="http://code.google.com/p/ztinputhint/" target="_blank"><b>Google Code</b>: ztInputHint</a> | <a href="http://plugins.jquery.com/project/ztInputHint" target="_blank"><b>jQuery</b>: ztInputHint</a>
+	</div>
+</div>
+</body>
+</html>
